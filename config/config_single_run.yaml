@@ -1,0 +1,13 @@
+# Simulation parameters
+EXPERIMENT_TYPE: 'run'
+SIMULATION_TYPE: 'single'
+
+# Environment parameters
+ENSEMBLE_COUNT: 1
+REVERSAL_COUNT: 1
+TRIAL_COUNT: 30
+
+# Agent parameters
+TAU_VAL: 5
+K_VAL: 0.5
+K_DECAY: 0
