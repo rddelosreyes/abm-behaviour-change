@@ -1,6 +1,6 @@
 This code accompanies the following paper:
 
-**Delos Reyes, R., Lyons Keenan, H., & Zachreson, C. (2024). _An agent-based model of behaviour change calibrated to reversal learning data_. arXiv. [https://arxiv.org/abs/2406.14062](https://arxiv.org/abs/2406.14062)**
+**Delos Reyes, R., Lyons Keenan, H., & Zachreson, C. (2024). _An agent-based model of behaviour change calibrated to reversal learning data_. arXiv. [https://doi.org/10.48550/arXiv.2406.14062](https://doi.org/10.48550/arXiv.2406.14062)**
 
 The experimental data used for calibration and validation can be found in the `data` folder:
   - `data/target_data_single.csv`: preprocessed single reversal learning data of large-brained guppies from [Buechel et al. (2018)](https://datadryad.org/stash/dataset/doi:10.5061/dryad.5mkkwh72s)
@@ -13,7 +13,7 @@ The simulation results reported in the paper can be found in the `experiments` f
 
 Alternatively, to run your own experiments, please modify the `run.sh` file and the configuration files in the `config` folder. 
 
-Cite:
+Cite as:
 ```
 @misc{delosreyes2024agentbased,
       title={An agent-based model of behaviour change calibrated to reversal learning data}, 
