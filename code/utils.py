@@ -44,7 +44,13 @@ def function_memory_influence(memory_tendency_stimulus: list[int], sign_wrt_acti
     return tendency_memory
 
 def calculate_distance(target, sample, distance_type):
-    """Calculates distance between target and sample, cutting the sample to the length of the target if necessary."""
+    """Calculates distance between target and sample using supplied metric.
+    
+    Args:
+        target: List of target values.
+        sample: List of sample values.
+        distance_type: Metric to use for distance calculation.
+    """
 
     assert len(target) == len(sample), 'Target and sample size are not equal'
 
@@ -55,11 +61,16 @@ def calculate_distance(target, sample, distance_type):
     else:
         raise ValueError("Type not supported")
 
-def get_target(targe_type):
-    if targe_type == 'guppy_single':
+def get_target(target_type):
+    """Returns the target data for a given experiment.
+    
+    Args:
+        target_type: Type of target data to return. ('guppy_single', 'guppy_serial')
+    """
+    if target_type == 'guppy_single':
         df = pd.read_csv(f'{DATA_DIR}/target_data_single.csv', header=None)
         run_target = df[0].tolist()
-    elif targe_type == 'guppy_serial':
+    elif target_type == 'guppy_serial':
         df = pd.read_csv(f'{DATA_DIR}/target_data_serial.csv', header=None)
         run_target = df[0].tolist()
     else:
@@ -68,6 +79,14 @@ def get_target(targe_type):
     return run_target
 
 def initialize_experiment(config):
+    """Initializes an experiment by creating the necessary folders and files.
+    
+    Takes in a configuration dictionary and returns the updated configuration, output folder, 
+    records file, and records dataframe to be used in the experiment.
+
+    Args:
+        config: Dictionary containing the configuration for the experiment.
+    """
     experiment_type = config['EXPERIMENT_TYPE']
     simulation_type = config['SIMULATION_TYPE']
 
@@ -111,6 +130,11 @@ def initialize_experiment(config):
     return config, output_folder, records_file, df_records
 
 def get_MAP(data):
+    """Returns the Maximum a posteriori (MAP) estimate of the data using KDE estimation.
+
+    Args:
+        data: A list of data points.
+    """
     data = np.array(data)
 
     # Kernel Density Estimation

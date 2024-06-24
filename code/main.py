@@ -13,6 +13,21 @@ from agent import Agent
 from environment import Environment
 
 def run_reversal_learning(ensemble_count, reversal_count, trial_count, tau_val, k_val, k_decay, position=0):
+    """Runs the reversal learning task for a single set of parameters.
+
+    Takes in the parameters for the agent and runs the reversal learning experiment for the specified 
+    ensemble size. The task is run for the specified number of reversals, and the success rate is 
+    calculated at each trial and returned as a time series.
+    
+    Args:
+        ensemble_count: Number of ensembles to run.
+        reversal_count: Number of reversals in the task.
+        trial_count: Number of trials in each
+        tau_val: Value of tau for the agent.
+        k_val: Value of k for the agent.
+        k_decay: Value of k decay for the agent.
+        position: Time position of the run.
+    """
     success_rate = np.array([0] * (trial_count * (reversal_count+1)))
 
     disable_tqdm = position != 0
@@ -56,6 +71,19 @@ def run_reversal_learning(ensemble_count, reversal_count, trial_count, tau_val, 
     return run_output
 
 def calibrate_reversal_learning(run_target, config, stage=0, stage2_param=None):
+    """Performs a single run of the ABC algorithm for the reversal learning task.
+
+    Parameters are sampled from the prior distribution, the model is simulated using these parameters,
+    and the distance between the model output and the target data is calculated. If the distance is
+    less than the threshold, the parameters are returned, otherwise the process is repeated.
+
+    Args:
+        run_target: The target data to calibrate the model to.
+        config: A dictionary containing the parameters for the run.
+        stage: The stage of the calibration process.
+        stage2_param: The parameters from the first stage of the calibration process or None if stage is 0 or 1.
+    """
+
     # Environment parameters
     ensemble_count = config['ENSEMBLE_COUNT']
     reversal_count = config['REVERSAL_COUNT']
@@ -112,15 +140,15 @@ def calibrate_reversal_learning(run_target, config, stage=0, stage2_param=None):
     return out
 
 def calibrate_reversal_learning_star(args):
-    """
-    Helper function to run calibrate_reversal_learning with multiple arguments
+    """Helper function to run calibrate_reversal_learning with multiple arguments
     """
     return calibrate_reversal_learning(*args)
 
 def run_abc(run_target, config, stage=0, stage2_param=None):
-    """
-    Runs the ABC algorithm across multiple processes
-    run_config is a dictionary containing the parameters for the run
+    """Runs the ABC algorithm across multiple processes.
+
+    Args:
+        run_config: a dictionary containing the parameters for the run
     """
 
     # Get sample_cnt from run_config
@@ -134,22 +162,23 @@ def run_abc(run_target, config, stage=0, stage2_param=None):
     return results
 
 def main(config):
+    """Main function to run the experiment based on the configuration provided.
+
+    Args:
+        config: Dictionary containing the configuration for the experiment.
+    """
 
     # Name of experiment
     experiment_type = config['EXPERIMENT_TYPE']
 
-    '''
-    This part of the code is for setting up where to load the parameters and store the output of the simulation runs.
-    '''
+    
+    # This part of the code is for setting up where to load the parameters and store the output of the simulation runs.
     config, output_folder, records_file, df_records = utils.initialize_experiment(config)
 
     if not os.path.isdir(output_folder):
         os.makedirs(output_folder)
 
-    '''
-    This part of the code is to run the simulation.
-    '''
-    # Run simulation
+    # This part of the code is to run the simulation.
     if experiment_type == 'run':
 
         seed = np.random.randint(0, 2**32 - 1)  # 1999154595 (seed number for Figure 3)
