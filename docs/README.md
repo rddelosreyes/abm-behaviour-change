@@ -11,7 +11,7 @@ The simulation results reported in the paper can be found in the `experiments` f
   - `experiments/calibrate/single/output_1_20240621_000000`: contains the data for the single reversal learning result shown in Figure 4 (see `plot_figure4.ipynb` for plotting code)
   - `experiments/calibrate/serial/output_1_20240621_000000`: contains the data for the serial reversal learning result shown in Figure 5 (see `plot_figure5.ipynb` for plotting code)
 
-Alternatively, to run your own experiments, please modify the `run.sh` file and the configuration files in the `config` folder. 
+Alternatively, to run your own experiments, please see the commands in the `run.sh` file. The configuration files in the `config` folder are identical to those used for our experiments with the exception of the `ABC_SAMPLE_COUNT` parameter, which is set to `10` rather than `1000` so that the experiment is faster to run. 
 
 Cite:
 ```

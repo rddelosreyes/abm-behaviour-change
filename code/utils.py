@@ -13,6 +13,8 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 
+DATA_DIR = "../data"
+
 def function_logistic(x: int, x0: int=0, k: int=1, L: int=1) -> int:
     """Returns the output of a logistic function.
 
@@ -55,10 +57,10 @@ def calculate_distance(target, sample, distance_type):
 
 def get_target(targe_type):
     if targe_type == 'guppy_single':
-        df = pd.read_csv('data/target_data_single.csv', header=None)
+        df = pd.read_csv(f'{DATA_DIR}/target_data_single.csv', header=None)
         run_target = df[0].tolist()
     elif targe_type == 'guppy_serial':
-        df = pd.read_csv('data/target_data_serial.csv', header=None)
+        df = pd.read_csv(f'{DATA_DIR}/target_data_serial.csv', header=None)
         run_target = df[0].tolist()
     else:
         raise ValueError('Type not supported')
