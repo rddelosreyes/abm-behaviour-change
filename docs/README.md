@@ -3,8 +3,8 @@ This code accompanies the following paper:
 **Delos Reyes, R., Lyons Keenan, H., & Zachreson, C. (2024). _An agent-based model of behaviour change calibrated to reversal learning data_. arXiv. [https://doi.org/10.48550/arXiv.2406.14062](https://doi.org/10.48550/arXiv.2406.14062)**
 
 The experimental data used for calibration and validation can be found in the `data` folder:
-  - `data/target_data_single.csv`: preprocessed single reversal learning data of large-brained guppies from [Buechel et al. (2018)](https://datadryad.org/stash/dataset/doi:10.5061/dryad.5mkkwh72s)
-  - `data/target_data_series.csv`: preprocessed serial reversal learning data of large-brained guppies from [Boussard et al. (2020)](https://datadryad.org/stash/dataset/doi:10.5061/dryad.cm503)
+  - `data/target_data_single.csv`: preprocessed single reversal learning data of large-brained guppies from [Buechel et al. (2018)](https://datadryad.org/stash/dataset/doi:10.5061/dryad.cm503)
+  - `data/target_data_series.csv`: preprocessed serial reversal learning data of large-brained guppies from [Boussard et al. (2020)](https://datadryad.org/stash/dataset/doi:10.5061/dryad.5mkkwh72s)
 
 The simulation results reported in the paper can be found in the `experiments` folder:
   - `experiments/run/single/output_1_20240621_000000`: contains the data for the model dynamics shown in Figure 3 (see `plot_figure3.ipynb` for plotting code)
